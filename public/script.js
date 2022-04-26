@@ -1,5 +1,5 @@
 let latestTranslation = ""
-async function translate() {
+async function translateGivenText() {
     let text = document.getElementById("searchTxt").value;
     console.log(text)
     text = text.replace("?", "%3F")
@@ -9,7 +9,8 @@ async function translate() {
     latestTranslation = response['translation']
     document.getElementById('result').innerHTML = response['translation'];
 }
-async function speak() {
+
+async function speakCustomText() {
     // Initialize new SpeechSynthesisUtterance object
     let speech = new SpeechSynthesisUtterance();
 
