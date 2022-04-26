@@ -36,7 +36,17 @@ app.get(`/translate/:text`, async (request, response) => {
     const translatedText = await translate(text, params)
     response.send({"translation" : translatedText});
 });
+app.post(`/translate`, async (request, response) => {
+    const text = request.body.text
 
+    const posLanguages = lngDetector.detect(text)
+
+    const params = detectLanguage(posLanguages);
+
+
+    const translatedText = await translate(text, params)
+    response.send({"translation" : translatedText});
+});
 
 
 function detectLanguage(languageList){
