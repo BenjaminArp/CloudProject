@@ -33,11 +33,12 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                    <div class="card" style="width: 38rem; height: 20rem">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Please enter German,French or Spanish text below:</h5>
-                            <textarea id="searchTxt" style="resize:none" name="Text" rows="6" cols="60" onkeyup="this.value = this.value.replace(/[&*<>]/g, '')">
-                            </textarea>
+                            <div class="form-group">
+                                <textarea id="searchTxt" style="resize:none" class="form-control" rows="7" name="Text" onkeyup="this.value = this.value.replace(/[&*<>]/g, '')" wrap=physical></textarea>
+                            </div>
                         </div>
                         <div class="card-body">
                             <button class="btn btn-secondary" type="submit" onclick="translateGivenText();">Translate</button>
@@ -46,10 +47,10 @@
                 </div>
 
                 <div class="col">
-                    <div class="card" style="width: 38rem; height: 20rem">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">English translation</h5>
-                            <div class="container" style="height: 10rem; border:1px solid #000000; padding: 4px" id="result">
+                            <div class="container" style="height: 12rem; border:1px solid #000000; padding: 4px" id="result">
                             </div>
                         </div>
                         <div class="card-body">

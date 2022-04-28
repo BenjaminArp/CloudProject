@@ -8,8 +8,6 @@ const bodyParser = require("body-parser");
 
 const translate = require("translate");
 
-const text2wav = require('text2wav')
-
 translate.engine = "google";
 
 const LanguageDetect = require('languagedetect');
