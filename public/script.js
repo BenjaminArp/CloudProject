@@ -1,9 +1,8 @@
 let latestTranslation = ""
 async function translateGivenText() {
     let text = document.getElementById("searchTxt").value;
-    console.log(text)
     text = text.replace("?", "%3F")
-    let url = "http://193.196.54.78:4000/translate/" + text
+    let url = "http://localhost:4000/translate/" + text
     let response = await fetch(url)
     response = await response.json()
     latestTranslation = response['translation']
@@ -11,13 +10,10 @@ async function translateGivenText() {
 }
 
 async function speakCustomText() {
-    // Initialize new SpeechSynthesisUtterance object
-    let speech = new SpeechSynthesisUtterance();
-
-    // Set Speech Language
-    speech.lang = "en";
-
-    speech.text = latestTranslation;
-
-    window.speechSynthesis.speak(speech);
+    let text = latestTranslation.replace("?", "%3F")
+    let url = "http://localhost:4000/speak/" + text
+    let response = await fetch(url)
+    response = await response.json()
+    const snd = new Audio("data:audio/wav;base64," + response['audio']);
+    snd.play();
 }

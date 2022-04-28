@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 
 const translate = require("translate");
 
+const text2wav = require('text2wav')
+
 translate.engine = "google";
 
 const LanguageDetect = require('languagedetect');
@@ -49,6 +51,27 @@ app.get(`/translate/:text`, async (request, response) => {
     const translatedText = await translate(text, params)
     response.send({"translation" : translatedText});
 });
+
+const googleTTS = require('google-tts-api');
+
+app.get('/speak/:text', async (request, response) => {
+    const text = request.params.text
+
+// get base64 text
+    try{
+        const result = await googleTTS
+            .getAudioBase64(text, {
+                lang: 'en',
+                slow: false,
+                host: 'https://translate.google.com',
+                timeout: 10000,
+            })
+        response.status(200).send({"audio": result})
+    }catch (e) {
+        response.sendStatus(500)
+    }
+});
+
 app.post(`/translate`, async (request, response) => {
     const text = request.body.text
 
