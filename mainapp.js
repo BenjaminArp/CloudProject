@@ -38,7 +38,6 @@ app.get(`/api`, function (request, response) {
 
 
 app.get(`/translate/:text`, async (request, response) => {
-    //const text = request.body.text
     const text = request.params.text
 
     const posLanguages = lngDetector.detect(text)
